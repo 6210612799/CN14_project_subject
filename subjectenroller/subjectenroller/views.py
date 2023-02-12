@@ -36,14 +36,14 @@ def login_view(request):
         return render(request, "subjectenroller/login.html")
     
 
-def enroll(request, S_id):
+def enroll(request):
     data = Subject.objects.all()
-    print(request.session['user_id'])
-    subject = Subject.objects.get(courses_id=S_id)
-    student = Student.objects.get(student_user=request.user)
-    student.student_temp.add(subject)
-    student.save()
-    subject.save()
+    # print(request.session['user_id'])
+    # subject = Subject.objects.get(courses_id=S_id)
+    # student = Student.objects.get(student_user=request.user)
+    # student.student_temp.add(subject)
+    # student.save()
+    # subject.save()
     return render(request,"subjectenroller/test_enroll.html", {'data': data})
 
 
