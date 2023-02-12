@@ -1,0 +1,27 @@
+{% extends "subjectenroller/layout.html" %}
+<title>ทดลองจดทะเบียน</title>
+
+{% block body %}
+    <script>
+       
+    </script>
+<p>ทดลองจดทะเบียนที่นี่ 666</p>
+<p>{{ request.session.user_id }}</p>
+{% for subject in data %}
+<details>
+    <summary>{{ subject.S_name }} {{ subject.S_id }}</summary>
+    <div style="margin-left: 1%;">
+        <p>ผู้สอน : {{ subject.S_teacher }}</p>
+          <p>หน่วยกิต : {{ subject.S_credits }}</p>
+          <p>รายละเอียดวิชา : {{ subject.S_detail }}</p>
+          <p><a href="">enroll</a></p>
+        
+    </div>
+          
+  </details>
+  {% empty %}
+  <li>
+      <b>Empty enrollment.</b>
+  </li>
+{% endfor %}
+{% endblock %}

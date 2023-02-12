@@ -2,11 +2,12 @@ from audioop import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from rest_framework import status
+from database.models import Person, Subject , Student
 import requests
 HOST = "https://restapi.engr.tu.ac.th"
 
-def index(request):
-    return render(request,"index.html")
+def homepage(request):
+    return render(request,"subjectenroller/homepage.html")
 
 def login_view(request):
     try:
@@ -29,8 +30,25 @@ def login_view(request):
                 request.session['login_status'] = username
                 request.session.modified = True
                 # return render(request, "web/policy.html")
-                return render(request,"subjectenroller/test_login.html")
+                return render(request,"subjectenroller/homepage.html")
             else:
                 return render(request, "subjectenroller/login.html")
         return render(request, "subjectenroller/login.html")
     
+
+def enroll(request, S_id):
+    data = Subject.objects.all()
+    print(request.session['user_id'])
+    subject = Subject.objects.get(courses_id=S_id)
+    student = Student.objects.get(student_user=request.user)
+    student.student_temp.add(subject)
+    student.save()
+    subject.save()
+    return render(request,"subjectenroller/test_enroll.html", {'data': data})
+
+
+def detail(request):
+    data = Subject.objects.all()
+    return render(request,"subjectenroller/subject_detail.html", {'data': data})
+
+#

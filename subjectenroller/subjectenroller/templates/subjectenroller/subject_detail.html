@@ -1,0 +1,10 @@
+{% extends "subjectenroller/layout.html" %}
+<title>รายละเอียดวิชา</title>
+{% block body %}
+<p>รายละเอียดวิชา</p>
+
+{% for subject in data %}
+    <a href=""></a><br>{{ subject.S_id }} {{ subject.S_name }}</a>
+
+{% endfor %}
+{% endblock %}
