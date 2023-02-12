@@ -3,9 +3,15 @@
 
 <html lang="en">
 <head>
-    
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+    {% block style %}
+    <link rel="stylesheet"  href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Prompt:wght@300&display=swap" rel="stylesheet">
+    {% endblock %}
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,21 +23,63 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <img src="{% static 'image/Main-Logo.png' %}" alt="" style="height: 80px; width: 80 px;">
-      
+        <a href="https://ece.engr.tu.ac.th/" class="navbar-brand d-flex">
+          <img src="https://ece.engr.tu.ac.th/assets/img/logo/ECE-department-logo.svg" alt="ECE Logo" height="60" id="ece-logo">
+        </a>
+    
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav mr-auto mt-2 mt-md-0">
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'homepage' %}">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item active" style="margin-left:780px">
+              <a class="nav-link" href="{% url 'homepage' %}">หน้าหลัก <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#!">Link</a>
+            <li class="nav-item active" style="margin-left:20px">
+              <a class="nav-link" href="https://ece.engr.tu.ac.th">เว็บไซต์หลัก</a>
             </li>
           </ul>
         </div>
-      </nav>
-    <a href="{% url 'enroll' %}">ทดลองจดทะเบียน</a>
+    </nav>
+
+    <div class="menu">
+      <br>
+      <a style="margin-left:20px;">แผนการเรียนภาคคอมพิวเตอร์</a>
+      <ul class="sidebar-menu">
+        <br>
+        <li class="have-children"><a href="#">ปีการศึกษาที่ 1</a>
+          <ul>
+            <li><a href="#">เทอม 1</a></li>
+            <li><a href="#">เทอม 2</a></li>
+          </ul>
+        </li>
+        <li class="have-children"><a href="#">ปีการศึกษาที่ 2</a>
+          <ul>
+            <li><a href="#">เทอม 1</a></li>
+            <li><a href="#">เทอม 2</a></li>
+          </ul>
+        </li>
+        <li class="have-children"><a href="#">ปีการศึกษาที่ 3</a>
+          <ul>
+            <li><a href="#">เทอม 1</a></li>
+            <li><a href="#">เทอม 2</a></li>
+          </ul>
+        </li>
+        <li class="have-children"><a href="#">ปีการศึกษาที่ 4</a>
+          <ul>
+            <li><a href="#">เทอม 1</a></li>
+            <li><a href="#">เทอม 2</a></li>
+          </ul>
+        </li>
+        <li><a href="{% url 'enroll' %}">ทดลองจดทะเบียน</a></li>
+        <li><a href="{% url 'enroll' %}">ออกจากระบบ</a></li>
+      </ul>
+    </div>
+    
+    <div class="main">
+      
+    </div>
+
+
     {% block body %}
     {% endblock %}
+
 </body>
 </html>

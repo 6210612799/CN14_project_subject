@@ -1,3 +1,28 @@
-.bg-gray{
+.bg-gray {
     background-color: #aaa2a29a;
  }
+
+a {
+    color: white;
+    font-family: 'Prompt', sans-serif;
+    font-size: 17px;
+    position: relative;
+}
+
+.menu {
+    height: 100vh;
+    background-color: #f8f8f8;
+    width: 20%;
+    float: left;
+    padding: 15px;
+    border-right: 1px ridge;
+    border-top: 1px ridge;
+}
+
+.main {
+    width: 75%;
+    float: left;
+    padding: 15px;
+}
+
+
