@@ -9,5 +9,5 @@
 
 ## [แนวคิดหัวข้อโครงงาน](https://github.com/6210612799/CN14_project_subject/blob/main/CN14_proposal_new.pdf)
 
-### Youtube Link ความคืบหน้า : https://youtu.be/wekXaE7hKdc
+## [คลิปนำเสนอความคืบหน้าโครงงาน 1]: https://youtu.be/wekXaE7hKdc
 
