@@ -7,5 +7,7 @@
 
 ### อาจารย์สามารถดูตัวอย่างเว็บไซต์ได้จากไฟล์ PDF ด้านบนนะครับ
 
+## [แนวคิดหัวข้อโครงงาน](https://github.com/6210612799/CN14_project_subject/blob/main/CN14_proposal_new.pdf)
+
 ### Youtube Link ความคืบหน้า : https://youtu.be/wekXaE7hKdc
 
