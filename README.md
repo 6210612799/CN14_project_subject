@@ -13,6 +13,8 @@
 ## [รายงานความคืบหน้าโครงงาน 2](https://github.com/6210612799/CN14_project_subject/blob/main/CN14-progress2.pdf)
 ## [คลิปนำเสนอความคืบหน้าโครงงาน](https://youtu.be/wekXaE7hKdc)
 
+### UPDATE
+
 
 
 
