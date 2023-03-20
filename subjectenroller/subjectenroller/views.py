@@ -51,4 +51,7 @@ def detail(request):
     data = Subject.objects.all()
     return render(request,"subjectenroller/subject_detail.html", {'data': data})
 
-#
+def login(request):
+    data = Subject.objects.all()
+    return render(request,"subjectenroller/login.html", {'data': data})
+
