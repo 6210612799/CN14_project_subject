@@ -4,5 +4,5 @@
 <br>
 
 <a>หน้าหลัก</a> <br>
-<a>สวัสดี {{ request.session.user_id }} </a>
+<a>สวัสดี {{ request.session.user_id }} {{ request.session.name }}</a>
 {% endblock %}

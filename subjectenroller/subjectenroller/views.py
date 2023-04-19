@@ -25,6 +25,7 @@ def login_view(request):
                 HOST+'/api/v1/authentication/', data=data)
             if response.status_code == status.HTTP_200_OK:
                 request.session['user_id'] = username
+                request.session['name'] = response.json()['name']
                 # print(request.session['user_id'])
                 # print("render policy page")
                 request.session['login_status'] = username
@@ -35,6 +36,11 @@ def login_view(request):
                 return render(request, "subjectenroller/login.html")
         return render(request, "subjectenroller/login.html")
     
+def logout_view(request):
+    del request.session['user_id']
+    del request.session['name']
+    return HttpResponseRedirect(reverse("login_view"))
+
 
 def enroll(request):
     data = Subject.objects.all()

@@ -13,6 +13,10 @@ class Subject(models.Model):
     S_credits = models.FloatField()
     S_detail = models.TextField()
     S_teacher = models.ForeignKey(Person, on_delete=models.CASCADE)
+    pre_id = models.ManyToManyField(
+        'self', blank=True, symmetrical=False, related_name='presub')
+    post_id = models.ManyToManyField(
+        'self', blank=True, symmetrical=False, related_name='postsub')
     def __str__(self):
         return self.S_name
 
