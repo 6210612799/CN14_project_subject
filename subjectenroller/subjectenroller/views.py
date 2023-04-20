@@ -3,7 +3,7 @@ from audioop import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from rest_framework import status
-from database.models import Person, Subject , Student
+from database.models import Person, Subject , Student ,Skill
 import requests
 HOST = "https://restapi.engr.tu.ac.th"
 
@@ -62,3 +62,7 @@ def login(request):
     data = Subject.objects.all()
     return render(request,"subjectenroller/login.html", {'data': data})
 
+def skill_tree(request):
+    skills = Skill.objects.all()
+    context = {'skills': skills}
+    return render(request, 'subjectenroller/skill_tree.html', context)

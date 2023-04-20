@@ -1,0 +1,42 @@
+{% block content %}
+    {% load mptt_tags %}
+
+    <div class="skill-tree">
+        {% recursetree skills %}
+            <ul>
+                <li>
+                    <a href="#">{{ node.subject.S_id }}</a>
+                    {% if not node.is_leaf_node %}
+                        <span class="toggle" data-target=".children-{{ node.pk }}">+</span>
+                    {% endif %}
+                    <ul class="children-{{ node.pk }}">
+                        {{ children }}
+                    </ul>
+                </li>
+            </ul>
+        {% endrecursetree %}
+    </div>
+
+    <script>
+        // Add hover effect to skill nodes
+        var nodes = document.querySelectorAll('.skill-tree a');
+        nodes.forEach(function(node) {
+            node.addEventListener('mouseenter', function(event) {
+                event.target.classList.add('hover');
+            });
+            node.addEventListener('mouseleave', function(event) {
+                event.target.classList.remove('hover');
+            });
+        });
+
+        // Add toggle effect to child nodes
+        var toggles = document.querySelectorAll('.skill-tree .toggle');
+        toggles.forEach(function(toggle) {
+            toggle.addEventListener('click', function(event) {
+                event.target.textContent = event.target.textContent === '+' ? '-' : '+';
+                var target = document.querySelector(event.target.dataset.target);
+                target.classList.toggle('collapsed');
+            });
+        });
+    </script>
+{% endblock %}

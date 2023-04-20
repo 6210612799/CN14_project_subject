@@ -24,5 +24,5 @@ urlpatterns = [
     path('enroll/', views.enroll , name="enroll"),
     path('detail/', views.detail , name="detail"),
     path('logout', views.logout_view , name="logout_view"),
-
+    path('skill_tree', views.skill_tree , name="skill_tree"),
 ]
