@@ -6,6 +6,30 @@
        
     </script>
     <br>
+    <div style="display: flex; flex-direction: column;">
+      <div class="container">
+          <div class="row">
+            <div class="col-auto">
+              <table style="width:100%">
+                  <tr>
+                      <th><img src="/static/image/user.jpg" alt="userlogo" width="35" height="35"></th>
+                      <td><a>ยินดีต้อนรับ {{ request.session.name }}  เลขที่นักศึกษา {{ request.session.user_id }}</a></td>
+                  </tr>
+                  <tr> 
+                      <td></td>       
+                      <td><a>คณะ วิศวกรรมศาสตร์ รูปแบบ คอมพิวเตอร์</a></td>
+                  </tr>
+                  <tr>   
+                      <td></td>     
+                      <td><a>ภาคเรียนที่ 2 ปีการศึกษา 2565</a></td>
+                  </tr>
+              </table>
+            </div>
+            <div class="col-auto">
+            </div>
+          </div>
+        </div>
+    </div>
 <p>ทดลองจดทะเบียนที่นี่ 666</p>
 <p>{{ request.session.user_id }}</p>
 {% for subject in data %}

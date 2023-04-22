@@ -1,0 +1,214 @@
+{% extends "subjectenroller/layout.html" %}
+
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Prompt:wght@300&display=swap" rel="stylesheet">
+</head>
+
+{% block body %}
+    <br>
+    <br>
+    <div style="display: flex; flex-direction: column;">
+        <div class="container">
+            <div class="row">
+              <div class="col-auto">
+                <table style="width:100%">
+                    <tr>
+                        <th><img src="/static/image/user.jpg" alt="userlogo" width="35" height="35"></th>
+                        <td><a>ยินดีต้อนรับ {{ request.session.name }}  เลขที่นักศึกษา {{ request.session.user_id }}</a></td>
+                    </tr>
+                    <tr> 
+                        <td></td>       
+                        <td><a>คณะ วิศวกรรมศาสตร์ รูปแบบ คอมพิวเตอร์</a></td>
+                    </tr>
+                    <tr>   
+                        <td></td>     
+                        <td><a>ภาคเรียนที่ 2 ปีการศึกษา 2565</a></td>
+                    </tr>
+                </table>
+              </div>
+              <div class="col-auto">
+              </div>
+            </div>
+            <br>
+            <a>แผนการเรียนภาคคอมพิวเตอร์ ชั้นปีที่ 1 เทอม 2</a>
+            <br>
+            <br>
+            
+            <table border="5" cellspacing="0" align="center">
+                <!--<caption>Timetable</caption>-->
+                <tr>
+                    <td align="center" height="50"
+                        width="100"><br>
+                        </br>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>8:00-9:30</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>9:30-10:00</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>10:00-10:30</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>10:00-11:00</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>11:00-12:00</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>12:00-12:30</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>12:30-13:00</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>13:00-13:30</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>13:30-14:00</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>14:00-15:00</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>15:00-16:00</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>16:00-16:30</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>16:30-17:00</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>17:00-17:30</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>17:00-18:00</b>
+                    </td>
+                    <td align="center" height="50"
+                        width="100">
+                        <b>18:00-19:00</b>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td rowspan="2" align="center" height="50">
+                        <b>Monday</b></td>
+                    <td align="center" height="50"></td>
+                    <td colspan="5" align="center" height="50">CN101 อ.กาญจนา (AE)</td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td colspan="4" align="center" height="50">CN103 อ.นาวิน</td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                </tr>
+                <tr>
+                    <td align="center" height="50"></td>
+                    <td colspan="2" align="center" height="50">CE101</td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                </tr>
+                <tr>
+                    <td align="center" height="50">
+                        <b>Tuesday</b>
+                    </td>
+                    <td align="center" height="50">MA112 (Cal. II) </td>
+                    <td colspan="3" align="center" height="50">IE121 (Materials)</td>
+                    <td colspan="2" align="center" height="50">SC134 (Physics II)</td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td colspan="4" align="center" height="50">TU105 (Comm. Skill in English)</td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                </tr>
+                <tr>
+                    <td align="center" height="50">
+                        <b>Wednesday</b>
+                    </td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td colspan="6" align="center" height="50">CN201 อ.ทวีศักดิ์ (OOP)</td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                </tr>
+                <tr>
+                    <td align="center" height="50">
+                        <b>Thursday</b>
+                    </td>
+                    <td align="center" height="50">MA112 (Cal. II) </td>
+                    <td colspan="3" align="center" height="50">IE121 (Materials)</td>
+                    <td colspan="2" align="center" height="50">SC134 (Physics II)</td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td colspan="4" align="center" height="50">TU104 (Critical Thinking)</td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                </tr>
+                <tr>
+                    <td align="center" height="50">
+                        <b>Friday</b>
+                    </td>
+                    <td align="center" height="50"></td>
+                    <td colspan="5" align="center" height="50">SC184 (Physic Lab II)</td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                    <td align="center" height="50"></td>
+                </tr>
+            </table>
+        <br>
+        <a>รายชื่อวิชา</a>  
+    
+  
+{% endblock %}

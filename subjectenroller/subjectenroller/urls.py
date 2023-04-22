@@ -25,4 +25,12 @@ urlpatterns = [
     path('detail/', views.detail , name="detail"),
     path('logout', views.logout_view , name="logout_view"),
     path('skill_tree', views.skill_tree , name="skill_tree"),
+    path('one_termone/', views.one_termone , name="one_termone"),
+    path('one_termtwo/', views.one_termtwo , name="one_termtwo"),
+    path('two_termone/', views.two_termone , name="two_termone"),
+    path('two_termtwo/', views.two_termtwo , name="two_termtwo"),
+    path('three_termone', views.three_termone , name="three_termone"),
+    path('three_termtwo', views.three_termtwo , name="three_termtwo"),
+    path('four_termone', views.four_termone , name="four_termone"),
+    path('four_termtwo', views.four_termtwo , name="four_termtwo"),
 ]
