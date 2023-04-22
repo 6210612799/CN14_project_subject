@@ -194,3 +194,45 @@ def test_enroll(request, S_id):
 #     # Render the enrollment success message and the list of enrolled subjects
 #     messages.success(request, f"You've successfully enrolled in {subject.S_name}.")
 #     return render(request, 'enrolled_subjects.html', {'context': context})
+    context = {'skills': skills}
+    return render(request, 'subjectenroller/skill_tree.html', context)
+
+def one_termone(request):
+    skills = Skill.objects.all()
+    context = {'skills': skills}
+    return render(request, 'subjectenroller/one_termone.html', context)
+
+def one_termtwo(request):
+    skills = Skill.objects.all()
+    context = {'skills': skills}
+    return render(request, 'subjectenroller/one_termtwo.html', context)
+
+def two_termone(request):
+    skills = Skill.objects.all()
+    context = {'skills': skills}
+    return render(request, 'subjectenroller/two_termone.html', context)
+
+def two_termtwo(request):
+    skills = Skill.objects.all()
+    context = {'skills': skills}
+    return render(request, 'subjectenroller/two_termtwo.html', context)
+
+def three_termone(request):
+    skills = Skill.objects.all()
+    context = {'skills': skills}
+    return render(request, 'subjectenroller/three_termone.html', context)
+
+def three_termtwo(request):
+    skills = Skill.objects.all()
+    context = {'skills': skills}
+    return render(request, 'subjectenroller/three_termtwo.html', context)
+
+def four_termone(request):
+    skills = Skill.objects.all()
+    context = {'skills': skills}
+    return render(request, 'subjectenroller/four_termone.html', context)
+
+def four_termtwo(request):
+    skills = Skill.objects.all()
+    context = {'skills': skills}
+    return render(request, 'subjectenroller/four_termtwo.html', context)

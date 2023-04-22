@@ -9,6 +9,14 @@ a {
     position: relative;
 }
 
+h2 {
+    color: white;
+    font-family: 'Prompt', sans-serif;
+    font-size: 20px;
+    margin-left: 20px;
+    position: relative;
+}
+
 .menu {
     height: 100vh;
     background-color: #f8f8f8;
@@ -29,5 +37,17 @@ a {
     background-size: cover;
     background-color: #4cc7f1;
   }
+
+.d-flex {
+    margin-bottom: 20px;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+.pb-4 {
+    padding-bottom: 1.5rem !important;
+}
 
 
