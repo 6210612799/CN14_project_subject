@@ -1,4 +1,30 @@
-{% extends "subjectenroller/layout.html" %}
-{% block body %}
-<p>eiei</p>
-{% endblock %}
+
+<title>ทดลองจดทะเบียน</title>
+
+
+
+    <br>
+<p>ทดลองจดทะเบียนที่นี่ 666</p>
+<p>{{ request.session.user_id }}</p>
+{% for subject in subject %}
+  <details>
+    <summary>{{ subject.S_name }} {{ subject.S_id }}</summary>
+    <div style="margin-left: 1%;">
+      <p>ผู้สอน : {{ subject.S_teacher }}</p>
+      <p>หน่วยกิต : {{ subject.S_credits }}</p>
+      <p>รายละเอียดวิชา : {{ subject.S_detail }}</p> 
+      {% for pre_id in subject.pre_id.all %}
+      <p>วิชาก่อนหน้า : {{ pre_id }}</p>
+      {% endfor %}
+      {% for post_id in subject.post_id.all %}
+      <p>วิชาตัวต่อ : {{ post_id }}</p>
+      {% endfor %}
+      <p><a href="">enroll</a></p>
+      
+
+    </div>        
+  </details>
+{% empty %}
+  <p>No subjects found.</p>
+{% endfor %}
+

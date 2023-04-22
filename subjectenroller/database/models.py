@@ -22,12 +22,12 @@ class Subject(models.Model):
         return self.S_id
 
 class Student(models.Model):
-    student_id = models.TextField()
-    student_subject =  models.ForeignKey(Subject, on_delete=models.CASCADE)
-    student_temp = models.ManyToManyField(
-        Subject, blank=True, related_name="student_temp")
+    user_id = models.CharField(max_length=30,null=True, blank=True,)
+    enrolled_subjects = models.ManyToManyField(Subject)
+
     def __str__(self):
-        return f"{self.student_id} "
+        return self.user_id
+
     
 class Skill(MPTTModel):
     name = models.CharField(max_length=100)
