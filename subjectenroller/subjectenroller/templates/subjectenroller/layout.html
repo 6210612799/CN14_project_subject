@@ -19,7 +19,7 @@
 </head>
 <body>
     
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="text-align: right;">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,8 +27,8 @@
           <img src="https://ece.engr.tu.ac.th/assets/img/logo/ECE-department-logo.svg" alt="ECE Logo" height="60" id="ece-logo">
         </a>
     
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav mr-auto mt-2 mt-md-0 navbar-menu">
+        <!-- <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="text-align: right;">
+          <ul class="navbar-nav mt-2 mt-md-0 navbar-menu">
             <li class="nav-item active" >
               <a class="nav-link" href="{% url 'homepage' %}">หน้าหลัก <span class="sr-only">(current)</span></a>
             </li>
@@ -36,6 +36,10 @@
               <a class="nav-link" href="https://ece.engr.tu.ac.th">เว็บไซต์หลัก</a>
             </li>
           </ul>
+        </div> -->
+        <div style="float: right;">
+          <span>หน้าหลัก</span>
+          <span>เว็บไซต์หลัก</span>
         </div>
     </nav>
 
@@ -69,7 +73,7 @@
           </ul>
         </li>
         <li><a href="{% url 'enroll_page' %}">ทดลองจดทะเบียน</a></li>
-        <li><a href="{% url 'login_view' %}">ออกจากระบบ</a></li>
+        <li><a href="{% url 'logout_view' %}">ออกจากระบบ</a></li>
       </ul>
     </div>
 

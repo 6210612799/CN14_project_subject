@@ -18,6 +18,7 @@ class Subject(models.Model):
         'self', blank=True, symmetrical=False, related_name='presub')
     post_id = models.ManyToManyField(
         'self', blank=True, symmetrical=False, related_name='postsub')
+    term = models.CharField(max_length=25,null=True, blank=True,)
     def __str__(self):
         return self.S_id
 

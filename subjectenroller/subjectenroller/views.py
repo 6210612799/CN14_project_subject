@@ -82,9 +82,14 @@ def enroll_page(request):
     return render(request,"subjectenroller/test_enroll.html", context)
 
 
-def detail(request):
+def detail(request, S_id):
     data = Subject.objects.all()
-    return render(request,"subjectenroller/subject_detail.html", {'data': data})
+    subject = get_object_or_404(Subject, S_id=S_id)
+    context = {
+        'subject': subject,
+        'data': data,
+    }
+    return render(request,"subjectenroller/subject_detail.html", {'context': context})
 
 def login(request):
     data = Subject.objects.all()
@@ -199,40 +204,48 @@ def test_enroll(request, S_id):
 
 def one_termone(request):
     skills = Skill.objects.all()
-    context = {'skills': skills}
+    subject = Subject.objects.all()
+    context = {'skills': skills,'subject': subject,}
     return render(request, 'subjectenroller/one_termone.html', context)
 
 def one_termtwo(request):
     skills = Skill.objects.all()
-    context = {'skills': skills}
+    subject = Subject.objects.all()
+    context = {'skills': skills,'subject': subject,}
     return render(request, 'subjectenroller/one_termtwo.html', context)
 
 def two_termone(request):
     skills = Skill.objects.all()
-    context = {'skills': skills}
+    subject = Subject.objects.all()
+    context = {'skills': skills,'subject': subject,}
     return render(request, 'subjectenroller/two_termone.html', context)
 
 def two_termtwo(request):
     skills = Skill.objects.all()
-    context = {'skills': skills}
+    subject = Subject.objects.all()
+    context = {'skills': skills,'subject': subject,}
     return render(request, 'subjectenroller/two_termtwo.html', context)
 
 def three_termone(request):
     skills = Skill.objects.all()
-    context = {'skills': skills}
+    subject = Subject.objects.all()
+    context = {'skills': skills,'subject': subject,}
     return render(request, 'subjectenroller/three_termone.html', context)
 
 def three_termtwo(request):
     skills = Skill.objects.all()
-    context = {'skills': skills}
+    subject = Subject.objects.all()
+    context = {'skills': skills,'subject': subject,}
     return render(request, 'subjectenroller/three_termtwo.html', context)
 
 def four_termone(request):
     skills = Skill.objects.all()
-    context = {'skills': skills}
+    subject = Subject.objects.all()
+    context = {'skills': skills,'subject': subject,}
     return render(request, 'subjectenroller/four_termone.html', context)
 
 def four_termtwo(request):
     skills = Skill.objects.all()
-    context = {'skills': skills}
+    subject = Subject.objects.all()
+    context = {'skills': skills,'subject': subject,}
     return render(request, 'subjectenroller/four_termtwo.html', context)

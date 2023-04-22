@@ -1,10 +1,30 @@
 {% extends "subjectenroller/layout.html" %}
 <title>รายละเอียดวิชา</title>
 {% block body %}
+<p>รหัสและชื่อวิชา</p>
+<p>ชื่อวิชา :{{ context.subject.S_name}} </p>
+<p>รหัสวิชา :{{ context.subject.S_id }}</p>
 <p>รายละเอียดวิชา</p>
+<p>ผู้สอน : {{ context.subject.S_teacher }}</p>
+{% if context.subject.pre_id %}
+  
+    <p>วิชาบังคับก่อน : {{ context.subject.presub }}</p>
 
-{% for subject in data %}
-    <a href=""></a><br>{{ subject.S_id }} {{ subject.S_name }}</a>
+{% else %}
+  <p>วิชาบังคับก่อน : -</p>
+{% endif %}
+      <p>หน่วยกิต : {{ context.subject.S_credits }}</p>
+      <p>รายละเอียดวิชา : {{ context.subject.S_detail }}</p> 
+      
+      
+      <p>วิชาตัวต่อ : {{ context.subject.presub }}</p>
+      {% for subject in context %}
+          {% for post_id in subject.post_id.all %}
+          <p>วิชาตัวต่อ : {{ post_id }}</p>
+          {% endfor %}
+   
 
-{% endfor %}
+    {% empty %}
+      <p>No subjects found.</p>
+    {% endfor %}
 {% endblock %}
