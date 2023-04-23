@@ -52,69 +52,89 @@
             <a>ทดลองจดทะเบียนที่นี่</a><br><br>
             {% block content %}
                 {% load mptt_tags %}
-            
-                <div class="skill-tree">
+                <div class="skill-tree background">
                     {% recursetree skills %}
                         <ul>
-                            <li><button onclick="confirm_enroll()"><a href="{% url 'enroll' node.subject.S_id %}">{{ node.subject.S_id }}</a></button>
-                                
-                                {% if not node.is_leaf_node %}
-                                    <span class="toggle" data-target=".children-{{ node.pk }}">+</span>
+                            <div style="margin-left: 2em;">
+                                {% if node.pare %}
+                                    <div class="parallel">
+                                        <a href="{% url 'enroll' node.pare.S_id %}" style="text-decoration: none;" class="text-white"><button class="btn-change" style="margin-top: 1em;">{{ node.pare.S_id }}</button></a>
+                                        <span class="line"></span>
+                                    </div>
                                 {% endif %}
-                                <ul class="children-{{ node.pk }}">
-                                    {{ children }}
-                                </ul>
-                            </li>
+                                <li>
+                                    {% if node.subject in student.enrolled_subjects.all %}
+                                        <a href="{% url 'enroll' node.subject.S_id %}" style="text-decoration: none;" ><button class="btn-enrolled" style="margin-top: 1em;">{{ node.subject.S_id }}</button></a>
+                                    {% else %}
+                                        <a href="{% url 'enroll' node.subject.S_id %}" style="text-decoration: none;" class="text-blue"><button class="btn-change" style="margin-top: 1em;" onclick="confirm_enroll()">{{ node.subject.S_id }}</button></a>
+                                    {% endif %}
+                                    {% if not node.is_leaf_node %}
+                                        <span class="toggle" data-target=".children-{{ node.pk }}"></span>
+                                    {% endif %}
+                                    <ul class="children-{{ node.pk }}">
+                                        {{ children }}
+                                    </ul>
+                                </li>
+                            </div>
                         </ul>
                     {% endrecursetree %}
+                    <br>
                 </div>
-            
+                <!-- ssss -->
                 <script>
-                    // Add hover effect to skill nodes
-                    var nodes = document.querySelectorAll('.skill-tree a');
-                    nodes.forEach(function(node) {
-                        node.addEventListener('mouseenter', function(event) {
-                            event.target.classList.add('hover');
-                        });
-                        node.addEventListener('mouseleave', function(event) {
-                            event.target.classList.remove('hover');
-                        });
-                    });
-            
-                    // Add toggle effect to child nodes
-                    var toggles = document.querySelectorAll('.skill-tree .toggle');
-                    toggles.forEach(function(toggle) {
-                        toggle.addEventListener('click', function(event) {
-                            event.target.textContent = event.target.textContent === '+' ? '-' : '+';
-                            var target = document.querySelector(event.target.dataset.target);
-                            target.classList.toggle('collapsed');
-                        });
-                    });
                 </script>
-            
-            
-            <a>วิชาที่ลงทะเบียนไปแล้ว</a> <br><br>
-            
-            {% for subject in student.enrolled_subjects.all %}
-            
-            <li>{{ subject }}<button onclick="confirm_unenroll()" ><a href="{% url 'un_enroll' subject.S_id %}">Delete</a></button></li> 
-            {% endfor %}
-            
-            
+                <br>
+                <a>วิชาที่ลงทะเบียนไปแล้ว</a><br><br>
+                <div style="margin: 1em;">
+                    {% for subject in student.enrolled_subjects.all %}
+                        <table>
+                            <tr>
+                                <td style="width: 80px;">{{ subject }}</td>
+                                <td><a href="{% url 'un_enroll' subject.S_id %}"><button onclick="confirm_unenroll()" class="btn-dagr">Delete</button></a></td>
+                            </tr>
+                        </table>
+                        <br>
+                    {% endfor %}
+                </div>
+                <!-- sss -->
+                <!-- <div class="skill-tree background" >
+                    {% recursetree skills %}
+                        <ul>
+                            <div style="margin-left: 2em;">
+                                <li><a href="{% url 'enroll' node.subject.S_id %}" style="text-decoration: none;" class="text-white"><button class="btn-change" style="margin-top: 1em;" onclick="confirm_enroll()">{{ node.subject.S_id }}</button></a>
+                                    
+                                    {% if not node.is_leaf_node %}
+                                        <span class="toggle" data-target=".children-{{ node.pk }}"></span>
+                                    {% endif %}
+                                    <ul class="children-{{ node.pk }}">
+                                        {{ children }}
+                                    </ul>
+                                </li>
+                            </div>
+                        </ul>
+                    {% endrecursetree %}
+                    <br>
+                </div> -->
+               
                 
-                <div style="margin-left: 1%;">
-                  
-                  
-                  <a href="">enroll</a>
-                  
-            
-                </div>        
-              
-            {% if empty %}
-            
-              <a>No subjects found.</a>
-              {% endif %}
+                <!-- dddd -->
+                <!-- <div class="tree-list">
+                    <div class="skill-tree">
+                        {% for subject_tree in tree_list %}
+                          <div class="subject-tree">
+                            {% for subject in subject_tree %}
+                              <div class="skill-box">
+                                <span class="skill-title">{{ subject }}</span>
+                                {% if not loop.last %} <div class="skill-connector"></div> {% endif %}
+                              </div>
+                            {% endfor %}
+                          </div>
+                        {% endfor %}
+                      </div> -->
+                      
+                <!-- dddd -->
+                
+
             {% endblock %}
   
 {% endblock %}
-

@@ -17,16 +17,17 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
+app_name = 'subjectenroller'
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', views.login_view , name="login_view"),
     path('homepage/', views.homepage , name="homepage"),
-    path('enroll_page/', views.enroll_page , name="enroll_page"),
+    path('enroll_page/', views.enroll_page , name="enroll_page"),#
     path('enroll/<str:S_id>/', views.enroll , name="enroll"),
     path('un_enroll/<str:S_id>/', views.un_enroll , name="un_enroll"),
-    path('enroll/<str:S_id>/subjectenroller/test_enroll.html/', views.test_enroll, name="test_enroll"),
+    # path('enroll/<str:S_id>/subjectenroller/test_enroll.html/', views.test_enroll, name="test_enroll"),#
     path('detail/<str:S_id>/', views.detail , name="detail"),
-    path('logout', views.logout_view , name="logout_view"),
+    path('logout/', views.logout_view , name="logout_view"),
     path('skill_tree', views.skill_tree , name="skill_tree"),
     path('test', views.test , name="test"),
     path('one_termone/', views.one_termone , name="one_termone"),

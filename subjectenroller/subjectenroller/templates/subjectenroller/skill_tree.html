@@ -30,13 +30,7 @@
         });
 
         // Add toggle effect to child nodes
-        var toggles = document.querySelectorAll('.skill-tree .toggle');
-        toggles.forEach(function(toggle) {
-            toggle.addEventListener('click', function(event) {
-                event.target.textContent = event.target.textContent === '+' ? '-' : '+';
-                var target = document.querySelector(event.target.dataset.target);
-                target.classList.toggle('collapsed');
-            });
-        });
+        
+    
     </script>
 {% endblock %}

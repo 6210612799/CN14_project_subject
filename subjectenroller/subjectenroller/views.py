@@ -1,8 +1,7 @@
 from django.urls import reverse
 from django.contrib.auth.signals import user_logged_in
 from django.dispatch import receiver
-from audioop import reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from rest_framework import status
 from database.models import Person, Subject , Student ,Skill
@@ -11,7 +10,13 @@ import requests
 HOST = "https://restapi.engr.tu.ac.th"
 
 def homepage(request):
-    return render(request,"subjectenroller/homepage.html")
+    # Check if user is logged in
+    if 'user_id' not in request.session:
+        messages.info(request, 'Please login to access this page.')
+        return HttpResponseRedirect(reverse("subjectenroller:login"))
+    
+    return render(request, "subjectenroller/homepage.html")
+
 
 def test(request):
     user_id = request.session.get('user_id')
@@ -62,23 +67,63 @@ def login_view(request):
 
     
 def logout_view(request):
-    del request.session['user_id']
-    del request.session['name']
+    try:
+        del request.session['user_id']
+        del request.session['name']
+        del request.session['login_status']
+    except KeyError:
+        pass
+
     return HttpResponseRedirect(reverse("login_view"))
 
 
 def enroll_page(request):
     subject = Subject.objects.all()
-    print(request.session['user_id'])
-    # print(request.session['user_id'])
-    # subject = Subject.objects.get(courses_id=S_id)
-    # student = Student.objects.get(student_user=request.user)
-    # student.student_temp.add(subject)
-    # student.save()
-    # subject.save()
-    subject = Subject.objects.all()
     skills = Skill.objects.all()
-    context = {'skills': skills , 'subject': subject,}
+    student = Student.objects.get(user_id=request.session.get('user_id'))
+    
+    ######################
+    subject_query = Subject.objects.all().order_by('S_id')
+    subject_list = []
+    tree_list =[]
+    for subject in subject_query:
+        subject_list.append(subject)
+    for subject in subject_list:
+        parent = subject
+        child = [subject]
+        # subject_list.remove(subject)
+        while True:
+            if len(parent.post_id.all()) == 0 :
+                child.append(parent)
+                break
+            else:
+                if len(parent.pre_id.all()) > 1:
+                    temp = []
+                    for pre_id in parent.pre_id.all():
+                        temp.append(pre_id)
+                    # child[-1]=temp
+                parent = parent.post_id.all()[0]
+                child.append(parent)
+                # print(parent)
+                # subject_list.remove(parent)
+        child = list(set(child))
+        # for subject_in_tree in child:
+        #     try:
+        #         subject_list.remove(subject_in_tree)
+        #     except:
+        #         pass
+        tree_list.append(child)
+    
+    #######################
+    context = {
+        'subject': subject,
+        'student': student,
+        'skills': skills,
+        ###########
+        'tree_list' : tree_list,
+        'subject_query':subject_query,
+        ###########
+    }
     return render(request,"subjectenroller/test_enroll.html", context)
 
 
@@ -103,17 +148,17 @@ def skill_tree(request):
 
 
 def enroll(request, S_id):
-    if request.method == 'GET':
-        user_id = request.session.get('user_id')
-        if user_id:
-            student = get_object_or_404(Student, user_id=user_id)
-            subject = get_object_or_404(Subject, S_id=S_id)
-            student.enrolled_subjects.add(subject)
-            student.save()
-            messages.success(request, 'Subject enrolled successfully!')
-        else:
-            messages.error(request, 'Please log in to enroll in a subject.')
-    return redirect("subjectenroller/test_enroll.html", subject_id=S_id)
+    
+    user_id = request.session.get('user_id')
+    if user_id:
+        student = get_object_or_404(Student, user_id=user_id)
+        subject = get_object_or_404(Subject, S_id=S_id)
+        student.enrolled_subjects.add(subject)
+        student.save()
+        messages.success(request, 'Subject enrolled successfully!')
+    else:
+        messages.error(request, 'Please log in to enroll in a subject.')
+    return HttpResponseRedirect(reverse("enroll_page"))
 
 def un_enroll(request, S_id):
     if request.method == 'GET':
@@ -129,20 +174,20 @@ def un_enroll(request, S_id):
                 messages.error(request, 'You have not enrolled in this subject.')
         else:
             messages.error(request, 'Please log in to un-enroll from a subject.')
-    return redirect("test_enroll", S_id=S_id)
+    return HttpResponseRedirect(reverse("enroll_page"))
 
 
-def test_enroll(request, S_id):
-    user_id = request.session.get('user_id')
-    subject = get_object_or_404(Subject, S_id=S_id)
-    student = Student.objects.get(user_id=user_id)
-    skills = Skill.objects.all()
-    context = {
-        'subject': subject,
-        'student': student,
-        'skills': skills,
-    }
-    return render(request, 'subjectenroller/test_enroll.html', context)
+# def test_enroll(request, S_id):
+#     user_id = request.session.get('user_id')
+#     #subject = get_object_or_404(Subject, S_id=S_id)
+#     student = Student.objects.get(user_id=user_id)
+#     skills = Skill.objects.all()
+#     context = {
+#         #'subject': subject,
+#         'student': student,
+#         'skills': skills,
+#     }
+#     return render(request, 'subjectenroller/test_enroll.html', context)
  
 
 # def enroll_page(request):

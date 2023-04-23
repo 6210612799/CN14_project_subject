@@ -37,7 +37,7 @@ class Skill(MPTTModel):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     lft = models.PositiveIntegerField(editable=False, db_index=True)
-
+    pare = models.ForeignKey(Subject, on_delete=models.CASCADE, null=True, blank=True, related_name='children_of')
     class MPTTMeta:
         order_insertion_by = ['name']
 
