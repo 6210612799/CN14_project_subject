@@ -1,30 +1,67 @@
 {% extends "subjectenroller/layout.html" %}
-<title>รายละเอียดวิชา</title>
+
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Prompt:wght@300&display=swap" rel="stylesheet">
+</head>
+
 {% block body %}
-<p>รหัสและชื่อวิชา</p>
-<p>ชื่อวิชา :{{ context.subject.S_name}} </p>
-<p>รหัสวิชา :{{ context.subject.S_id }}</p>
-<p>รายละเอียดวิชา</p>
-<p>ผู้สอน : {{ context.subject.S_teacher }}</p>
-{% if context.subject.pre_id %}
-  
-    <p>วิชาบังคับก่อน : {{ context.subject.presub }}</p>
-
-{% else %}
-  <p>วิชาบังคับก่อน : -</p>
-{% endif %}
-      <p>หน่วยกิต : {{ context.subject.S_credits }}</p>
-      <p>รายละเอียดวิชา : {{ context.subject.S_detail }}</p> 
-      
-      
-      <p>วิชาตัวต่อ : {{ context.subject.presub }}</p>
-      {% for subject in context %}
-          {% for post_id in subject.post_id.all %}
-          <p>วิชาตัวต่อ : {{ post_id }}</p>
+    <br>
+    <br>
+    <div style="display: flex; flex-direction: column;">
+        <div class="container">
+            <div class="row">
+              <div class="col-auto">
+                <table style="width:100%">
+                    <tr>
+                        <th><img src="/static/image/user.jpg" alt="userlogo" width="35" height="35"></th>
+                        <td><a>ยินดีต้อนรับ {{ request.session.name }}  เลขที่นักศึกษา {{ request.session.user_id }}</a></td>
+                    </tr>
+                    <tr> 
+                        <td></td>       
+                        <td><a>คณะ วิศวกรรมศาสตร์ รูปแบบ คอมพิวเตอร์</a></td>
+                    </tr>
+                    <tr>   
+                        <td></td>     
+                        <td><a>ภาคเรียนที่ 2 ปีการศึกษา 2565</a></td>
+                    </tr>
+                </table>
+              </div>
+              <div class="col-auto">
+              </div>
+            </div>
+            <br>
+              <h5>รหัสและชื่อวิชา</h5><br>
+              <h5>ชื่อวิชา: {{ context.subject.S_name }}</h5><br>
+              <h5>รหัสวิชา: {{ context.subject.S_id }}</h5><br>
+              <h5>ผู้สอน: {{ context.subject.S_teacher }}</h5><br>
+              {% if context.subject.pre_id %}
+                <h5>วิชาบังคับก่อน: {{ context.subject.presub }}</h5><br>
+              {% else %}
+                <h5>วิชาบังคับก่อน: -</h5><br>
+              {% endif %}
+                <h5>หน่วยกิต: {{ context.subject.S_credits }} หน่วยกิต</h5><br>
+                <h5>รายละเอียดวิชา: {{ context.subject.S_detail }}</h5><br>
+                <h5>วิชาตัวต่อ: {{ context.subject.presub }}<h5>
+              {% for subject in context %}
+                  {% for post_id in subject.post_id.all %}
+                    <h5>วิชาตัวต่อ: {{ post_id }}</h5>
+                  {% endfor %}
+                  {% empty %}
+                    <h5>No subjects found.</h5>
+              {% endfor %}   
+        <br>
+        <ul>
+          {% for subject in subject %}
+            {% if subject.term == '11' %}      
+            <li><a href="{% url 'detail' subject.S_id %}">{{ subject.S_id }} - {{ subject.S_name }}</a></li>
+            {% endif %}
           {% endfor %}
-   
-
-    {% empty %}
-      <p>No subjects found.</p>
-    {% endfor %}
+        </ul>
+  
 {% endblock %}
