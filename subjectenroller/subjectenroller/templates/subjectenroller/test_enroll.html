@@ -57,9 +57,16 @@
                         <ul>
                             <div style="margin-left: 2em;">
                                 {% if node.pare %}
+                                    
+                                {% if node.pare in student.enrolled_subjects.all %}
                                     <div class="parallel">
-                                        <a href="{% url 'enroll' node.pare.S_id %}" style="text-decoration: none;" class="text-white"><button class="btn-change" style="margin-top: 1em;">{{ node.pare.S_id }}</button></a>
-                                        <span class="line"></span>
+                                        <a href="{% url 'enroll' node.pare.S_id %}" style="text-decoration: none;"><button class="btn-enrolled" style="margin-top: 1em;">{{ node.pare.S_id }}</button></a>
+                                        
+                                        {% else %}
+                                        <a href="{% url 'enroll' node.pare.S_id %}" style="text-decoration: none;" class="text-blue"><button class="btn-change" style="margin-top: 1em;" onclick="confirm_enroll()">{{ node.pare.S_id }}</button></a>
+                                        
+                                    
+                                    {% endif %}
                                     </div>
                                 {% endif %}
                                 <li>
