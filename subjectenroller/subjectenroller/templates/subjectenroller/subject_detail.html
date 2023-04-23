@@ -11,6 +11,7 @@
 </head>
 
 {% block body %}
+    <title>รายละเอียดวิชา</title>
     <br>
     <br>
     <div style="display: flex; flex-direction: column;">
@@ -41,18 +42,19 @@
               <h5>รหัสวิชา: {{ context.subject.S_id }}</h5><br>
               <h5>ผู้สอน: {{ context.subject.S_teacher }}</h5><br>
               <h5>หน่วยกิต: {{ context.subject.S_credits }} หน่วยกิต</h5><br>
-              <h5>วิชาบังคับก่อน:
+              <h5>วิชาบังคับก่อน:</h5><br>
               {% for pre_subject in context.subject.pre_id.all %}
-              <p>{{ pre_subject.S_id }} - {{ pre_subject.S_name }}</p>
+              <h5>{{ pre_subject.S_id }} - {{ pre_subject.S_name }}</h5><br>
           {% empty %}
 
-          {% endfor %}
-              
-                
-                <h5>วิชาตัวต่อ:</h5>
+          {% endfor %}    
+              <h5>วิชาตัวต่อ:</h5><br>
                 {% for post_subject in context.subject.post_id.all %}
-              <p>{{ post_subject.S_id }} - {{ post_subject.S_name }}</p>
-                
+              <h5>{{ post_subject.S_id }} - {{ post_subject.S_name }}</h5><br>       
+          {% endfor %}
+              <h5>วิชาที่ต้องลงคู่กัน:</h5><br>
+                {% for same_subject in context.subject.same_id.all %}
+              <h5>{{ same_subject.S_id }} - {{ same_subject.S_name }}</h5><br>       
           {% endfor %}
           <h5>รายละเอียดวิชา: {{ context.subject.S_detail }}</h5><br>        
               
