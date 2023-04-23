@@ -40,21 +40,22 @@
               <h5>ชื่อวิชา: {{ context.subject.S_name }}</h5><br>
               <h5>รหัสวิชา: {{ context.subject.S_id }}</h5><br>
               <h5>ผู้สอน: {{ context.subject.S_teacher }}</h5><br>
-              {% if context.subject.pre_id %}
-                <h5>วิชาบังคับก่อน: {{ context.subject.presub }}</h5><br>
-              {% else %}
-                <h5>วิชาบังคับก่อน: -</h5><br>
-              {% endif %}
-                <h5>หน่วยกิต: {{ context.subject.S_credits }} หน่วยกิต</h5><br>
-                <h5>รายละเอียดวิชา: {{ context.subject.S_detail }}</h5><br>
-                <h5>วิชาตัวต่อ: {{ context.subject.presub }}<h5>
-              {% for subject in context %}
-                  {% for post_id in subject.post_id.all %}
-                    <h5>วิชาตัวต่อ: {{ post_id }}</h5>
-                  {% endfor %}
-                  {% empty %}
-                    <h5>No subjects found.</h5>
-              {% endfor %}   
+              <h5>หน่วยกิต: {{ context.subject.S_credits }} หน่วยกิต</h5><br>
+              <h5>วิชาบังคับก่อน:
+              {% for pre_subject in context.subject.pre_id.all %}
+              <p>{{ pre_subject.S_id }} - {{ pre_subject.S_name }}</p>
+          {% empty %}
+
+          {% endfor %}
+              
+                
+                <h5>วิชาตัวต่อ:</h5>
+                {% for post_subject in context.subject.post_id.all %}
+              <p>{{ post_subject.S_id }} - {{ post_subject.S_name }}</p>
+                
+          {% endfor %}
+          <h5>รายละเอียดวิชา: {{ context.subject.S_detail }}</h5><br>        
+              
         <br>
         <ul>
           {% for subject in subject %}
