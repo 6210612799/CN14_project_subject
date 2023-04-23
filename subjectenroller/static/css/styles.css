@@ -10,10 +10,14 @@ a {
 }
 
 h2 {
-    color: white;
+    color: rgb(0, 0, 0);
     font-family: 'Prompt', sans-serif;
-    font-size: 20px;
-    margin-left: 20px;
+    position: relative;
+}
+
+h5 {
+    color: rgb(0, 0, 0);
+    font-family: 'Prompt', sans-serif;
     position: relative;
 }
 

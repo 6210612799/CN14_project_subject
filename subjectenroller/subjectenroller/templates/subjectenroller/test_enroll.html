@@ -1,112 +1,120 @@
+{% extends "subjectenroller/layout.html" %}
 
-<title>ทดลองจดทะเบียน</title>
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Prompt:wght@300&display=swap" rel="stylesheet">
+</head>
 
 {% block body %}
-    
-       <script>
-    function confirm_enroll()
-    {
-        var answer = window.confirm("ยืนยันการจดทะเบียน");
-        return answer;
-    }
-    function confirm_unenroll()
-    {
-        var answer = window.confirm("ถอนการจดทะเบียน");
-        return answer;
-    }
-</script>
-    
+    <script>
+        function confirm_enroll()
+        {
+            var answer = window.confirm("ยืนยันการจดทะเบียน");
+            return answer;
+        }
+        function confirm_unenroll()
+        {
+            var answer = window.confirm("ถอนการจดทะเบียน");
+            return answer;
+        }
+    </script>
+    <br>
     <br>
     <div style="display: flex; flex-direction: column;">
-      <div class="container">
-          <div class="row">
-            <div class="col-auto">
-              <table style="width:100%">
-                  <tr>
-                      <th><img src="/static/image/user.jpg" alt="userlogo" width="35" height="35"></th>
-                      <td><a>ยินดีต้อนรับ {{ request.session.name }}  เลขที่นักศึกษา {{ request.session.user_id }}</a></td>
-                  </tr>
-                  <tr> 
-                      <td></td>       
-                      <td><a>คณะ วิศวกรรมศาสตร์ รูปแบบ คอมพิวเตอร์</a></td>
-                  </tr>
-                  <tr>   
-                      <td></td>     
-                      <td><a>ภาคเรียนที่ 2 ปีการศึกษา 2565</a></td>
-                  </tr>
-              </table>
+        <div class="container">
+            <div class="row">
+              <div class="col-auto">
+                <table style="width:100%">
+                    <tr>
+                        <th><img src="/static/image/user.jpg" alt="userlogo" width="35" height="35"></th>
+                        <td><a>ยินดีต้อนรับ {{ request.session.name }}  เลขที่นักศึกษา {{ request.session.user_id }}</a></td>
+                    </tr>
+                    <tr> 
+                        <td></td>       
+                        <td><a>คณะ วิศวกรรมศาสตร์ รูปแบบ คอมพิวเตอร์</a></td>
+                    </tr>
+                    <tr>   
+                        <td></td>     
+                        <td><a>ภาคเรียนที่ 2 ปีการศึกษา 2565</a></td>
+                    </tr>
+                </table>
+              </div>
+              <div class="col-auto">
+              </div>
             </div>
-            <div class="col-auto">
-            </div>
-          </div>
-        </div>
-    </div>
-<p>ทดลองจดทะเบียนที่นี่ 666</p>
-<p>{{ request.session.user_id }}</p>
-{% block content %}
-    {% load mptt_tags %}
-
-    <div class="skill-tree">
-        {% recursetree skills %}
-            <ul>
-                <li><button onclick="confirm_enroll()"><a href="{% url 'enroll' node.subject.S_id %}">{{ node.subject.S_id }}</a></button>
-                    
-                    {% if not node.is_leaf_node %}
-                        <span class="toggle" data-target=".children-{{ node.pk }}">+</span>
-                    {% endif %}
-                    <ul class="children-{{ node.pk }}">
-                        {{ children }}
-                    </ul>
-                </li>
-            </ul>
-        {% endrecursetree %}
-    </div>
-
-    <script>
-        // Add hover effect to skill nodes
-        var nodes = document.querySelectorAll('.skill-tree a');
-        nodes.forEach(function(node) {
-            node.addEventListener('mouseenter', function(event) {
-                event.target.classList.add('hover');
-            });
-            node.addEventListener('mouseleave', function(event) {
-                event.target.classList.remove('hover');
-            });
-        });
-
-        // Add toggle effect to child nodes
-        var toggles = document.querySelectorAll('.skill-tree .toggle');
-        toggles.forEach(function(toggle) {
-            toggle.addEventListener('click', function(event) {
-                event.target.textContent = event.target.textContent === '+' ? '-' : '+';
-                var target = document.querySelector(event.target.dataset.target);
-                target.classList.toggle('collapsed');
-            });
-        });
-    </script>
-
-
-enrolled <br><br>
-
-{% for subject in student.enrolled_subjects.all %}
-
-<li>{{ subject }}<button onclick="confirm_unenroll()" ><a href="{% url 'un_enroll' subject.S_id %}">Delete</a></button></li> 
-{% endfor %}
-
-
-    
-    <div style="margin-left: 1%;">
-      
-      
-      <p><a href="">enroll</a></p>
-      
-
-    </div>        
+            <br>
+            <a>ทดลองจดทะเบียนที่นี่</a><br><br>
+            <a>{{ request.session.user_id }}</a>
+            {% block content %}
+                {% load mptt_tags %}
+            
+                <div class="skill-tree">
+                    {% recursetree skills %}
+                        <ul>
+                            <li><button onclick="confirm_enroll()"><a href="{% url 'enroll' node.subject.S_id %}">{{ node.subject.S_id }}</a></button>
+                                
+                                {% if not node.is_leaf_node %}
+                                    <span class="toggle" data-target=".children-{{ node.pk }}">+</span>
+                                {% endif %}
+                                <ul class="children-{{ node.pk }}">
+                                    {{ children }}
+                                </ul>
+                            </li>
+                        </ul>
+                    {% endrecursetree %}
+                </div>
+            
+                <script>
+                    // Add hover effect to skill nodes
+                    var nodes = document.querySelectorAll('.skill-tree a');
+                    nodes.forEach(function(node) {
+                        node.addEventListener('mouseenter', function(event) {
+                            event.target.classList.add('hover');
+                        });
+                        node.addEventListener('mouseleave', function(event) {
+                            event.target.classList.remove('hover');
+                        });
+                    });
+            
+                    // Add toggle effect to child nodes
+                    var toggles = document.querySelectorAll('.skill-tree .toggle');
+                    toggles.forEach(function(toggle) {
+                        toggle.addEventListener('click', function(event) {
+                            event.target.textContent = event.target.textContent === '+' ? '-' : '+';
+                            var target = document.querySelector(event.target.dataset.target);
+                            target.classList.toggle('collapsed');
+                        });
+                    });
+                </script>
+            
+            
+            <a>enrolled</a> <br><br>
+            
+            {% for subject in student.enrolled_subjects.all %}
+            
+            <li>{{ subject }}<button onclick="confirm_unenroll()" ><a href="{% url 'un_enroll' subject.S_id %}">Delete</a></button></li> 
+            {% endfor %}
+            
+            
+                
+                <div style="margin-left: 1%;">
+                  
+                  
+                  <a href="">enroll</a>
+                  
+            
+                </div>        
+              
+            {% if empty %}
+            
+              <a>No subjects found.</a>
+              {% endif %}
+            {% endblock %}
   
-{% if empty %}
-
-  <p>No subjects found.</p>
-  {% endif %}
-{% endblock %}
 {% endblock %}
 
