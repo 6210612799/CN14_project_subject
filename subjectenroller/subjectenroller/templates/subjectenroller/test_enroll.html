@@ -28,8 +28,9 @@
     <br>
     <div style="display: flex; flex-direction: column;">
         <div class="container">
-            <div class="row">
+            <div class="row background">
               <div class="col-auto">
+                <br>
                 <table style="width:100%">
                     <tr>
                         <th><img src="/static/image/user.jpg" alt="userlogo" width="35" height="35"></th>
@@ -44,12 +45,13 @@
                         <td><a>ภาคเรียนที่ 2 ปีการศึกษา 2565</a></td>
                     </tr>
                 </table>
+                <br>
               </div>
               <div class="col-auto">
               </div>
             </div>
             <br>
-            <a>ทดลองจดทะเบียนที่นี่</a><br><br>
+            <b><a>ทดลองจดทะเบียนที่นี่</a></b><br><br>
             {% block content %}
                 {% load mptt_tags %}
                 <div class="skill-tree background">
@@ -58,16 +60,25 @@
                             <div style="margin-left: 2em;">
                                 {% if node.pare %}
                                     
-                                {% if node.pare in student.enrolled_subjects.all %}
+                                <!-- {% if node.pare in student.enrolled_subjects.all %}
                                     <div class="parallel">
                                         <a href="{% url 'enroll' node.pare.S_id %}" style="text-decoration: none;"><button class="btn-enrolled" style="margin-top: 1em;">{{ node.pare.S_id }}</button></a>
                                         
                                         {% else %}
                                         <a href="{% url 'enroll' node.pare.S_id %}" style="text-decoration: none;" class="text-blue"><button class="btn-change" style="margin-top: 1em;" onclick="confirm_enroll()">{{ node.pare.S_id }}</button></a>
                                         
+                                    </div>
+                                    {% endif %} -->
+                                    {% if node.pare in student.enrolled_subjects.all %}
+                                    
+                                        <a href="{% url 'enroll_both' node.pare.S_id node.subject.S_id %}" style="text-decoration: none;"><button class="btn-enrolled" style="margin-top: 1em;">{{ node.pare.S_id }}</button></a>
+                                        
+                                        {% else %}
+                                        <a href="{% url 'enroll_both' node.pare.S_id node.subject.S_id %}" style="text-decoration: none;"><button class="btn-change" style="margin-top: 1em;" onclick="confirm_enroll()">{{ node.pare.S_id }}</button></a>
+                                        
                                     
                                     {% endif %}
-                                    </div>
+                                    
                                 {% endif %}
                                 <li>
                                     {% if node.subject in student.enrolled_subjects.all %}
@@ -87,14 +98,19 @@
                     {% endrecursetree %}
                     <br>
                 </div>
+                <!-- asdskald; -->
+                    
+
+                <!-- asdasda -->
                 <!-- ssss -->
                 <script>
                 </script>
                 <br>
-                <a>วิชาที่ลงทะเบียนไปแล้ว</a><br><br>
-                <div style="margin: 1em;">
+                <b><a>วิชาที่ลงทะเบียนไปแล้ว</a></b><br><br>
+                <div class="background">
+                    <br>
                     {% for subject in student.enrolled_subjects.all %}
-                        <table>
+                        <table style="margin-left: 2em;">
                             <tr>
                                 <td style="width: 80px;">{{ subject }}</td>
                                 <td><a href="{% url 'un_enroll' subject.S_id %}"><button onclick="confirm_unenroll()" class="btn-dagr">Delete</button></a></td>
@@ -103,6 +119,8 @@
                         <br>
                     {% endfor %}
                 </div>
+                <br>
+                <br>
                 <!-- sss -->
                 <!-- <div class="skill-tree background" >
                     {% recursetree skills %}

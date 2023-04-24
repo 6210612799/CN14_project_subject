@@ -160,6 +160,23 @@ def enroll(request, S_id):
         messages.error(request, 'Please log in to enroll in a subject.')
     return HttpResponseRedirect(reverse("enroll_page"))
 
+def enroll_both(request, S_id1, S_id2):
+    user_id = request.session.get('user_id')
+    if user_id:
+        student = get_object_or_404(Student, user_id=user_id)
+        subject1 = get_object_or_404(Subject, S_id=S_id1)
+        subject2 = get_object_or_404(Subject, S_id=S_id2)
+        if subject1 in student.enrolled_subjects.all() and subject2 in student.enrolled_subjects.all():
+            messages.warning(request, 'You have already enrolled in both subjects.')
+        else:
+            student.enrolled_subjects.add(subject1, subject2)
+            student.save()
+            messages.success(request, 'Subjects enrolled successfully!')
+    else:
+        messages.error(request, 'Please log in to enroll in subjects.')
+    return HttpResponseRedirect(reverse("enroll_page"))
+
+
 def un_enroll(request, S_id):
     if request.method == 'GET':
         user_id = request.session.get('user_id')
@@ -175,6 +192,9 @@ def un_enroll(request, S_id):
         else:
             messages.error(request, 'Please log in to un-enroll from a subject.')
     return HttpResponseRedirect(reverse("enroll_page"))
+
+
+
 
 
 # def test_enroll(request, S_id):

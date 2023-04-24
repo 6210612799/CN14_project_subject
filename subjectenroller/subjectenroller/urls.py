@@ -38,4 +38,6 @@ urlpatterns = [
     path('three_termtwo', views.three_termtwo , name="three_termtwo"),
     path('four_termone', views.four_termone , name="four_termone"),
     path('four_termtwo', views.four_termtwo , name="four_termtwo"),
+    path('enroll_both/<str:S_id1>/<str:S_id2>/', views.enroll_both, name='enroll_both'),
+
 ]
