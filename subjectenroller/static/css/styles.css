@@ -22,7 +22,7 @@ h5 {
 }
 
 .menu {
-    height: 100vh;
+    height: auto;
     background-color: #f8f8f8;
     width: 20%;
     float: left;
@@ -143,3 +143,22 @@ h5 {
     border-radius: 20px;
 }
 
+.btn-circle {
+    background-color: #cfcfcf;
+    color: black;
+    width: 35px;
+    height: 35px;
+    transition-duration: 0.4s;
+    border-radius: 20px;
+    border: none
+}
+
+.btn-circle:hover {
+    background-color: #f8f8f8;
+    color: black;
+    width: 35px;
+    height: 35px;
+    transition-duration: 0.4s;
+    border-radius: 20px;
+    border: none
+}

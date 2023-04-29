@@ -29,7 +29,7 @@ urlpatterns = [
     path('detail/<str:S_id>/', views.detail , name="detail"),
     path('logout/', views.logout_view , name="logout_view"),
     path('skill_tree', views.skill_tree , name="skill_tree"),
-    path('test', views.test , name="test"),
+    path('show_all', views.show_all , name="show_all"),
     path('one_termone/', views.one_termone , name="one_termone"),
     path('one_termtwo/', views.one_termtwo , name="one_termtwo"),
     path('two_termone/', views.two_termone , name="two_termone"),
@@ -39,5 +39,7 @@ urlpatterns = [
     path('four_termone', views.four_termone , name="four_termone"),
     path('four_termtwo', views.four_termtwo , name="four_termtwo"),
     path('enroll_both/<str:S_id1>/<str:S_id2>/', views.enroll_both, name='enroll_both'),
+    path('search/', views.search, name='search'),
+    path('<str:S_id>/', views.detail, name='subject_detail'),
 
 ]

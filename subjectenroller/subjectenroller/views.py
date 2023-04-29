@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from rest_framework import status
 from database.models import Person, Subject , Student ,Skill
 from django.contrib import messages
+from django.db.models import Q
 import requests
 HOST = "https://restapi.engr.tu.ac.th"
 
@@ -18,7 +19,7 @@ def homepage(request):
     return render(request, "subjectenroller/homepage.html")
 
 
-def test(request):
+def show_all(request):
     user_id = request.session.get('user_id')
     subject = Subject.objects.all()
     student = Student.objects.get(user_id=user_id)
@@ -28,7 +29,7 @@ def test(request):
         'student': student,
         'skills': skills,
     }
-    return render(request,"subjectenroller/test_login.html",context)
+    return render(request,"subjectenroller/all_subject.html",context)
 
 def login_view(request):
     try:
@@ -314,3 +315,35 @@ def four_termtwo(request):
     subject = Subject.objects.all()
     context = {'skills': skills,'subject': subject,}
     return render(request, 'subjectenroller/four_termtwo.html', context)
+
+
+# def search_subjects(request):
+#     # Get the search query from the request's GET data
+#     search_query = request.GET.get('search_query')
+
+#     # If there is no search query, redirect back to the original page
+#     if not search_query:
+#         return redirect(request.META.get('HTTP_REFERER', '/'))
+
+#     # Filter the list of subjects based on the search query
+#     data = Subject.objects.filter(S_id__icontains=search_query)
+
+#     # If there are no matching subjects, return an error page
+#     if not data:
+#         return render(request, 'subjectenroller/search_error.html', {'search_query': search_query})
+
+#     # If there is exactly one matching subject, redirect to its detail page
+#     if len(data) == 1:
+#         return redirect('subject_detail', S_id=data[0].S_id)
+
+#     # If there are multiple matching subjects, display a list of links to their detail pages
+#     return render(request, 'subjectenroller/search_results.html', {'data': data, 'search_query': search_query})
+
+def search(request):
+    query = request.POST.get('q')
+    if query:
+        data = Subject.objects.filter(Q(S_id__icontains=query) | Q(S_name__icontains=query))
+    else:
+        data = []
+    return render(request, 'subjectenroller/search_results.html',  {'data': data,'query' :query })
+
