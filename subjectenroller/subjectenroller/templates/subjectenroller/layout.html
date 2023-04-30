@@ -15,18 +15,17 @@
     <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css” />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     {% endblock %}
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="text-align: right;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-expand-sm">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <a href="https://ece.engr.tu.ac.th/" class="navbar-brand d-flex">
-          <img src="https://ece.engr.tu.ac.th/assets/img/logo/ECE-department-logo.svg" alt="ECE Logo" height="60" id="ece-logo">
+          <img src="https://ece.engr.tu.ac.th/assets/img/logo/ECE-department-logo.svg" alt="ECE Logo" height="65" id="ece-logo" style="margin-top:15px;">
         </a>
     
         <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02" >
@@ -42,8 +41,8 @@
         <!-- search bar -->
         <form method="post" action="{% url 'search' %}" class="form-inline d-flex ">
           {% csrf_token %}
-          <input class="form-control thai-font"  name="q" type="text"
-            placeholder="ค้นหารหัสวิชา เช่น CN101" style="width: 200px; margin-top: 1em; margin-left: 1em;" value="">
+          <a><input class="form-control thai-font"  name="q" type="text"
+            placeholder="ค้นหารหัสวิชา เช่น CN101" style="width: 200px; margin-top: 1em; margin-left: 1em;" value=""></a>
           <button class="btn-circle" style="margin-left: 1em; margin-top: 1em;" type="submit">
             <i class="fa fa-search"></i>
           </button>

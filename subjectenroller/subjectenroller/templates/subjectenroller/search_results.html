@@ -40,15 +40,17 @@
             <br>
    
             <br>
-            <h3>ผลการค้นหารายวิชา {{ query }}</h3>
+            <b><a style="font-size: 22px;">ผลการค้นหารายวิชา {{ query }}</a></b><br>
             <br>
             <ul>
               {% for subject in data %}
                 <li><a href="{% url 'subject_detail' S_id=subject.S_id %}">{{ subject }}</a></li>
                 <br>
               {% empty %}
-                <li>ไม่พบรายวิชาที่คุณค้นหา</li>
+                <li><a>ไม่พบรายวิชาที่คุณค้นหา</a></li>
               {% endfor %}
             </ul>
+
+            
   
 {% endblock %}

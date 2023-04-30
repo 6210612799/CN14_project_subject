@@ -11,26 +11,26 @@
 </head>
 
 {% block body %}
-    <script>
-        function confirm_enroll()
-        {
-            var answer = window.confirm("ยืนยันการจดทะเบียน");
-            return answer;
-        }
-        function confirm_unenroll()
-        {
-            var answer = window.confirm("ถอนการจดทะเบียน");
-            return answer;
-        }
-    </script>
-    <title>ทดลองจดทะเบียน</title>
+<script>
+    function confirm_enroll()
+    {
+        var answer = window.confirm("ยืนยันการจดทะเบียน");
+        return answer;
+    }
+    function confirm_unenroll()
+    {
+        var answer = window.confirm("ถอนการจดทะเบียน");
+        return answer;
+    }
+</script>
+    <div style="width:auto;">
+    <title>แผนการเรียนภาคคอมพิวเตอร์  ชั้นปีที่ 1 เทอม 1</title>
     <br>
     <br>
     <div style="display: flex; flex-direction: column;">
         <div class="container">
-            <div class="row background">
+            <div class="row">
               <div class="col-auto">
-                <br>
                 <table style="width:100%">
                     <tr>
                         <th><img src="/static/image/user.jpg" alt="userlogo" width="35" height="35"></th>
@@ -45,7 +45,6 @@
                         <td><a>ภาคเรียนที่ 2 ปีการศึกษา 2565</a></td>
                     </tr>
                 </table>
-                <br>
               </div>
               <div class="col-auto">
               </div>
@@ -161,5 +160,5 @@
                 
 
             {% endblock %}
-  
+    </div>
 {% endblock %}
