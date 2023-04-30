@@ -111,7 +111,7 @@
                     {% for subject in student.enrolled_subjects.all %}
                         <table style="margin-left: 2em;">
                             <tr>
-                                <td style="width: 80px;">{{ subject }}</td>
+                                <td style="width: 350px;"><a>{{ subject.S_id }} - {{ subject.S_name }}</a></td>
                                 <td><a href="{% url 'un_enroll' subject.S_id %}"><button onclick="confirm_unenroll()" class="btn-dagr">Delete</button></a></td>
                             </tr>
                         </table>
