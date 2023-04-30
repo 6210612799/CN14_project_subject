@@ -44,7 +44,7 @@
             <br>
             <ul>
               {% for subject in data %}
-                <li><a href="{% url 'subject_detail' S_id=subject.S_id %}">{{ subject }}</a></li>
+                <li><a href="{% url 'detail' subject.S_id %}">{{ subject.S_id }} - {{ subject.S_name }}</a></li>
                 <br>
               {% empty %}
                 <li><a>ไม่พบรายวิชาที่คุณค้นหา</a></li>
