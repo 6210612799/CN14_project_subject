@@ -37,26 +37,26 @@
               </div>
             </div>
             <br>
-              <h5>รหัสและชื่อวิชา</h5><br>
-              <h5>ชื่อวิชา: {{ context.subject.S_name }}</h5><br>
-              <h5>รหัสวิชา: {{ context.subject.S_id }}</h5><br>
-              <h5>ผู้สอน: {{ context.subject.S_teacher }}</h5><br>
-              <h5>หน่วยกิต: {{ context.subject.S_credits }} หน่วยกิต</h5><br>
-              <h5>วิชาบังคับก่อน:</h5><br>
+              <b><a style="font-size: 22px;">รหัสและชื่อวิชา</b></a><br><br>
+              <a style="font-size: 22px;">ชื่อวิชา: {{ context.subject.S_name }}</a><br><br>
+              <a style="font-size: 22px;">รหัสวิชา: {{ context.subject.S_id }}</a><br><br>
+              <a style="font-size: 22px;">ผู้สอน: {{ context.subject.S_teacher }}</a><br><br>
+              <a style="font-size: 22px;">หน่วยกิต: {{ context.subject.S_credits }} หน่วยกิต</a><br><br>
+              <a style="font-size: 22px;">วิชาบังคับก่อน:</a><br><br>
               {% for pre_subject in context.subject.pre_id.all %}
-              <h5>{{ pre_subject.S_id }} - {{ pre_subject.S_name }}</h5><br>
+              <a style="font-size: 22px;">{{ pre_subject.S_id }} - {{ pre_subject.S_name }}</a><br><br>
           {% empty %}
 
           {% endfor %}    
-              <h5>วิชาตัวต่อ:</h5><br>
+              <a style="font-size: 22px;">วิชาตัวต่อ:</a><br><br>
                 {% for post_subject in context.subject.post_id.all %}
-              <h5>{{ post_subject.S_id }} - {{ post_subject.S_name }}</h5><br>       
+              <a style="font-size: 22px;">{{ post_subject.S_id }} - {{ post_subject.S_name }}</a><br><br>   
           {% endfor %}
-              <h5>วิชาที่ต้องลงคู่กัน:</h5><br>
+              <a style="font-size: 22px;">วิชาที่ต้องลงคู่กัน:</a><br><br>
                 {% for same_subject in context.subject.same_id.all %}
-              <h5>{{ same_subject.S_id }} - {{ same_subject.S_name }}</h5><br>       
+              <a style="font-size: 22px;">{{ same_subject.S_id }} - {{ same_subject.S_name }}</a><br><br>    
           {% endfor %}
-          <h5>รายละเอียดวิชา: {{ context.subject.S_detail }}</h5><br>        
+              <a style="font-size: 22px;">รายละเอียดวิชา: {{ context.subject.S_detail }}</a><br><br>        
               
         <br>
         <ul>
